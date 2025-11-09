@@ -1,14 +1,14 @@
-const video = document.querySelector('.viewer');
+const video = document.querySelector('.player__video');
 const toggle = document.querySelector('.toggle');
 const volume = document.querySelector('[name="volume"]');
 const playbackSpeed = document.querySelector('[name="playbackSpeed"]');
-const skipButtons = document.querySelectorAll('[data-skip]');
+const rewindButton = document.querySelector('.rewind');
+const forwardButton = document.querySelector('.forward');
 const progress = document.querySelector('.progress');
 const progressFilled = document.querySelector('.progress__filled');
 
 function togglePlay() {
-  const method = video.paused ? 'play' : 'pause';
-  video[method]();
+  video.paused ? video.play() : video.pause();
 }
 
 function updateButton() {
@@ -46,6 +46,7 @@ toggle.addEventListener('click', togglePlay);
 volume.addEventListener('input', handleVolumeUpdate);
 playbackSpeed.addEventListener('input', handleSpeedUpdate);
 
-skipButtons.forEach(button => button.addEventListener('click', skip));
+rewindButton.addEventListener('click', skip);
+forwardButton.addEventListener('click', skip);
 
 progress.addEventListener('click', scrub);
